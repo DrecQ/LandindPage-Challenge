@@ -11,11 +11,11 @@
         {{ n % 2 === 0 ? '❤️' : '🌹' }}
       </div>
       
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] opacity-[0.02] -rotate-12 select-none">
-        <div class="marquee-text font-black text-[10vh] lg:text-[18vh] whitespace-nowrap uppercase tracking-tighter">
-          ValenPeluche • Pure Douceur • ValenPeluche • Pure Douceur •
-        </div>
-      </div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250%] lg:w-[150%] opacity-[0.08] lg:opacity-[0.05] -rotate-6 lg:-rotate-12 select-none pointer-events-none">
+  <div class="marquee-text font-black text-[12vh] lg:text-[18vh] whitespace-nowrap uppercase tracking-tighter text-gray-900">
+    ValenPeluche • Pure Douceur • ValenPeluche • Pure Douceur • ValenPeluche • Pure Douceur • ValenPeluche • Pure Douceur •
+  </div>
+</div>
     </div>
 
     <div class="container mx-auto px-6 lg:px-12 relative z-10">
@@ -63,7 +63,7 @@
           <div class="absolute z-30 -bottom-2 lg:bottom-4 right-4 lg:right-8 animate-soft-bounce">
             <div class="brush-badge relative px-6 py-2 transform -rotate-3">
               <span class="relative z-10 text-white font-black text-xs lg:text-sm tracking-widest uppercase font-poppins">
-                Fait main
+                Fait avec amour
               </span>
             </div>
           </div>

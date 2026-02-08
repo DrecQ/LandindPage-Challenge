@@ -1,3 +1,32 @@
 @import "tailwindcss";
 
 
+/* Animation au scroll simple */
+[v-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[v-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* On réutilise ton effet Brush Badge partout */
+.brush-badge {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+}
+
+.brush-badge::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) skewX(-15deg);
+  width: 115%; height: 110%;
+  background: #FF1493;
+  border-radius: 4px 15px 5px 12px / 8px 4px 10px 5px;
+  z-index: -1;
+}
