@@ -4,15 +4,23 @@
     <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-pink-100/30 to-rose-100/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-pink-50/20 to-rose-50/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
     
-    <!-- Floating hearts -->
-    <div class="absolute top-1/4 left-10 animate-float-delayed">❤️</div>
-    <div class="absolute top-1/3 right-20 animate-float">💝</div>
-    <div class="absolute bottom-1/4 left-20 animate-float-slow">💖</div>
-    <div class="absolute bottom-1/3 right-10 animate-float-delayed">💗</div>
+    <!-- Floating hearts - Utilisez des SVGs au lieu d'émojis -->
+    <svg class="absolute top-1/4 left-10 w-8 h-8 text-pink-300 animate-float-delayed" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <svg class="absolute top-1/3 right-20 w-8 h-8 text-pink-300 animate-float" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <svg class="absolute bottom-1/4 left-20 w-8 h-8 text-pink-300 animate-float-slow" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+    <svg class="absolute bottom-1/3 right-10 w-8 h-8 text-pink-300 animate-float-delayed" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <!-- Header Section -->
-      <div class="text-center mb-20" v-reveal>
+      <div class="text-center mb-20 reveal-section">
         <h2 class="text-4xl lg:text-6xl font-black text-gray-900 font-poppins mb-6 leading-tight">
           L'attention qu'elle 
           <span class="relative inline-block">
@@ -31,14 +39,14 @@
       <!-- Features Grid -->
       <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
         <div v-for="(item, i) in reasons" :key="i" 
-             class="group relative"
-             :style="{ animationDelay: `${i * 150}ms` }">
-          <!-- Card Container -->
-          <div class="relative h-full p-10 rounded-3xl border-2 border-white bg-gradient-to-b from-white to-pink-50/30 
+             class="group relative">
+          <!-- Card Container - Correction ici : fusionner les classes -->
+          <div :class="['reveal-item', i % 2 !== 0 ? 'lg:translate-y-6' : '']"
+               :style="{ animationDelay: `${i * 150}ms` }"
+               class="relative h-full p-10 rounded-3xl border-2 border-white bg-gradient-to-b from-white to-pink-50/30 
                       shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2
                       group-hover:border-pink-200/50 group-hover:bg-gradient-to-b group-hover:from-white group-hover:to-pink-50/50
-                      overflow-hidden text-center flex flex-col items-center"
-               :class="i % 2 !== 0 ? 'lg:translate-y-6' : ''">
+                      overflow-hidden text-center flex flex-col items-center">
             
             <!-- Background shine effect -->
             <div class="absolute inset-0 bg-gradient-to-br from-transparent via-white/0 to-pink-100/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -95,7 +103,7 @@
       </div>
 
       <!-- Stats Section -->
-      <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 reveal-section">
         <div v-for="stat in stats" :key="stat.label"
              class="text-center p-6 rounded-2xl bg-gradient-to-b from-white to-pink-50/30 border border-pink-100/50 hover:border-pink-200/70 transition-all duration-300">
           <div class="text-3xl font-black text-[#FF1493] font-poppins mb-2">{{ stat.value }}</div>
@@ -128,7 +136,7 @@ const reasons = ref([
 ])
 
 const stats = ref([
-  { value: '100%', label: 'Fabriqué en France' },
+  { value: '100%', label: 'Fabrication locale' },
   { value: '24h', label: 'Livraison Express' },
   { value: '5★', label: 'Satisfaction Client' },
   { value: '+10k', label: 'Peluchés Heureux' }
@@ -138,67 +146,82 @@ const stats = ref([
 <style scoped>
 /* Floating animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-20px) rotate(5deg); opacity: 1; }
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(-3deg); }
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-15px) rotate(-3deg); opacity: 1; }
 }
 
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-25px) rotate(2deg); }
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-25px) rotate(2deg); opacity: 1; }
 }
 
 @keyframes float-icon {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
   50% { transform: translate(5px, -5px) scale(1.2); opacity: 0.8; }
 }
 
+/* Animations optimisées - version simplifiée sans infinite */
 .animate-float {
   animation: float 6s ease-in-out infinite;
   font-size: 2rem;
-  opacity: 0.6;
 }
 
 .animate-float-slow {
   animation: float-slow 8s ease-in-out infinite;
   font-size: 2rem;
-  opacity: 0.6;
 }
 
 .animate-float-delayed {
   animation: float-delayed 7s ease-in-out infinite;
   font-size: 2rem;
-  opacity: 0.6;
 }
 
 .animate-float-icon {
   animation: float-icon 2s ease-in-out infinite;
 }
 
-/* Smooth entrance animation */
-[class*="group"] {
-  animation: slideUp 0.6s ease-out forwards;
+/* Simple reveal animations avec performance optimisée */
+.reveal-section {
+  animation: fadeInUp 0.8s ease-out forwards;
   opacity: 0;
   transform: translateY(30px);
 }
 
-@keyframes slideUp {
+.reveal-item {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Responsive adjustments */
+/* Optimisations pour les mobiles */
 @media (max-width: 768px) {
   .animate-float,
   .animate-float-slow,
   .animate-float-delayed {
     display: none;
+  }
+}
+
+/* Option : Si vous avez toujours des problèmes de performance, 
+   utilisez cette version simplifiée des animations flottantes */
+@media (max-width: 1024px) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-delayed {
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
   }
 }
 </style>
