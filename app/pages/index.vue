@@ -1,6 +1,6 @@
 <template>
   <div class="bg-off-white">
-        <Navbar />
+      <Navbar />
         <HeroSection />
         <WhySection />
         <ProductSection />
