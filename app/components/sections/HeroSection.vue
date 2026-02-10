@@ -116,7 +116,7 @@
             <h1 class="text-5xl lg:text-7xl font-black text-gray-900 leading-[1] tracking-tighter animate-fade-in-up font-poppins">
               Une manière d'être<br/>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] italic" style="font-family: 'Harrington', cursive;">
-                plus proche de toi.
+                plus près de toi.
             </span>            </h1>
             <p class="text-sm lg:text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed animate-fade-in-up delay-100 font-poppins">
               Plus qu'un cadeau, un messager d'amour. MA PELUCHE transforme chaque câlin en déclaration, chaque instant en souvenir impérissable.

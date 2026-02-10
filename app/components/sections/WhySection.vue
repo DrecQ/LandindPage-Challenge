@@ -109,29 +109,18 @@
               
               <!-- SVG Icons with gradient -->
               <div class="relative transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                <svg v-if="item.icon === 'softness'" class="w-10 h-10 lg:w-12 lg:h-12" fill="none" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
-                        class="fill-gradient-to-r from-[#FF1493] to-[#FF66CC]"/>
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
-                        fill="url(#heart-gradient)" opacity="0.5"/>
+                <!-- Icon: Qualité -->
+                <svg v-if="item.icon === 'softness'" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 lg:w-12 lg:h-12" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#heart-gradient)"/>
                 </svg>
-                <svg v-else-if="item.icon === 'eternity'" class="w-10 h-10 lg:w-12 lg:h-12" fill="none" viewBox="0 0 24 24">
-                  <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm6 9.09c0 4-2.55 7.7-6 8.83-3.45-1.13-6-4.82-6-8.83V6.31l6-2.12 6 2.12v4.78z" 
-                        class="fill-gradient-to-r from-[#FF1493] to-[#FF66CC]"/>
+                <!-- Icon: Durabilité -->
+                <svg v-else-if="item.icon === 'eternity'" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 lg:w-12 lg:h-12" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm6 9.09c0 4-2.55 7.7-6 8.83-3.45-1.13-6-4.82-6-8.83V6.31l6-2.12 6 2.12v4.78z" fill="url(#heart-gradient)"/>
+                  <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z" fill="url(#shield-gradient)" opacity="0.6"/>
                 </svg>
-                <svg v-else-if="item.icon === 'craft'" class="w-10 h-10 lg:w-12 lg:h-12" fill="none" viewBox="0 0 24 24">
-                  <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" 
-                        class="fill-gradient-to-r from-[#FF1493] to-[#FF66CC]"/>
-                </svg>
-                
-                <!-- Gradient definition for SVG -->
-                <svg class="absolute w-0 h-0">
-                  <defs>
-                    <linearGradient id="heart-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#FF1493" stop-opacity="1" />
-                      <stop offset="100%" stop-color="#FF66CC" stop-opacity="1" />
-                    </linearGradient>
-                  </defs>
+                <!-- Icon: Artisanat -->
+                <svg v-else-if="item.icon === 'craft'" xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 lg:w-12 lg:h-12" viewBox="0 0 24 24" fill="none">
+                  <path d="M20.41 4.94l-1.35-1.35c-.78-.78-2.05-.78-2.83 0l-9.88 9.88-2.12-2.12 1.41-1.41 1.06 1.06 8.48-8.48 1.06 1.06-1.41 1.41 2.12 2.12 1.41-1.41 1.06 1.06-8.48 8.48 1.06 1.06 9.88-9.88c.78-.78.78-2.05 0-2.83zM3 21h2v-2h-2v2zm4 0h2v-2H7v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2z" fill="url(#heart-gradient)"/>
                 </svg>
               </div>
               
@@ -164,8 +153,8 @@
         </div>
       </div>
 
-      <!-- Stats Section - Modernisé -->
-      <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 reveal-section">
+      <!-- Stats Section - Modernisé avec padding bottom ajouté -->
+      <div class="mt-24 mb-8 pb-8 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 reveal-section">
         <div v-for="stat in stats" :key="stat.label"
              class="group relative text-center p-4 lg:p-6 rounded-2xl backdrop-blur-sm bg-white/50 
                     border border-white/30 hover:border-[#FF1493]/30 transition-all duration-300
@@ -186,12 +175,46 @@
             </div>
           </div>
           
+          <!-- SVG Icons pour les stats -->
+          <div class="absolute -bottom-2 -right-2 opacity-20 group-hover:opacity-40 transition-opacity duration-300">
+            <svg v-if="stat.icon === 'france'" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="url(#stat-gradient)"/>
+            </svg>
+            <svg v-else-if="stat.icon === 'delivery'" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none">
+              <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="url(#stat-gradient)"/>
+            </svg>
+            <svg v-else-if="stat.icon === 'star'" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="url(#stat-gradient)"/>
+            </svg>
+            <svg v-else-if="stat.icon === 'happy'" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none">
+              <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" fill="url(#stat-gradient)"/>
+            </svg>
+          </div>
+          
           <!-- Corner accent -->
           <div class="absolute top-0 right-0 w-6 h-6 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div class="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-[#FF1493]/10 to-transparent -rotate-45 transform translate-x-2 -translate-y-2"></div>
           </div>
         </div>
       </div>
+
+      <!-- Gradient definitions SVG (caché) -->
+      <svg class="absolute w-0 h-0">
+        <defs>
+          <linearGradient id="heart-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF1493" stop-opacity="1" />
+            <stop offset="100%" stop-color="#FF66CC" stop-opacity="1" />
+          </linearGradient>
+          <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FF1493" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#FF66CC" stop-opacity="0.3" />
+          </linearGradient>
+          <linearGradient id="stat-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FF1493" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#FF66CC" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+      </svg>
     </div>
   </section>
 </template>
@@ -218,10 +241,10 @@ const reasons = ref([
 ])
 
 const stats = ref([
-  { value: '100%', label: 'Fabrication locale' },
-  { value: '24h', label: 'Livraison Express' },
-  { value: '5★', label: 'Satisfaction Client' },
-  { value: '+10k', label: 'Peluchés Heureux' }
+  { value: '100%', label: 'Fabrication locale', icon: 'france' },
+  { value: '24h', label: 'Livraison Express', icon: 'delivery' },
+  { value: '5★', label: 'Satisfaction Client', icon: 'star' },
+  { value: '+10k', label: 'Peluchés Heureux', icon: 'happy' }
 ])
 
 // Helper functions for background elements
@@ -321,6 +344,19 @@ const getParticleBgColor = (n) => {
   .w-20 {
     width: 4rem;
     height: 4rem;
+  }
+  
+  /* Ajout de margin-bottom pour éviter le chevauchement avec le CTA */
+  .mt-24 {
+    margin-top: 4rem !important;
+  }
+  
+  .mb-8 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .pb-8 {
+    padding-bottom: 2rem !important;
   }
 }
 

@@ -151,7 +151,7 @@ const stats = ref([
   { value: '4.9/5', label: 'Satisfaction client' },
   { value: '98%', label: 'Recommanderait' },
   { value: '24h', label: 'Livraison moyenne' },
-  { value: '500+', label: 'Cœurs conquis' }
+  { value: '128+', label: 'Cœurs conquis' }
 ])
 </script>
 

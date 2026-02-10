@@ -123,8 +123,8 @@
               
               <!-- Main price -->
               <div class="mb-8 lg:mb-10 relative">
-                <span class="text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 tracking-tighter font-poppins">25.5</span>
-                <span class="text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] font-poppins">k XOF</span>
+                <span class="text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 tracking-tighter font-poppins">20.500</span>
+                <span class="text-2xl lg:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] font-poppins"> XOF</span>
                 
                 <!-- Underline effect -->
                 <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-[#FF1493] to-transparent rounded-full blur-sm"></div>
@@ -139,7 +139,7 @@
               </div>
 
               <!-- CTA Button -->
-              <button @click="scrollToOrder" 
+              <button @click="openReservationPopup" 
                       class="w-full group relative py-4 lg:py-6 px-6 lg:px-10 bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl lg:rounded-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl active:scale-95 overflow-hidden shadow-xl">
                 <!-- Animated gradient overlay -->
                 <div class="absolute inset-0 bg-gradient-to-r from-[#FF1493] via-[#FF66CC] to-[#FF1493] bg-[length:200%_100%] animate-gradient-x-fast opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -177,6 +177,110 @@
         </div>
       </div>
     </div>
+
+    <!-- Reservation Popup -->
+    <div v-if="showPopup" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+      <div class="relative w-full max-w-md">
+        <!-- Popup background with glass effect -->
+        <div class="relative backdrop-blur-sm bg-white/95 border-4 border-white/50 rounded-[2rem] lg:rounded-[3rem] shadow-[0_32px_64px_-16px_rgba(255,20,147,0.3)] overflow-hidden">
+          
+          <!-- Animated border effect -->
+          <div class="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] p-[3px] bg-gradient-to-r from-[#FF1493]/20 via-[#FF66CC]/10 to-[#FF1493]/20 -z-10">
+            <div class="w-full h-full bg-white rounded-[2rem] lg:rounded-[3rem]"></div>
+          </div>
+
+          <!-- Popup content -->
+          <div class="p-8 lg:p-10 relative">
+            <!-- Close button -->
+            <button @click="closePopup" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-gradient-to-br from-pink-50 to-white flex items-center justify-center shadow-sm border border-pink-100 hover:bg-gradient-to-br hover:from-[#FF1493] hover:to-[#FF66CC] transition-all duration-300 hover:scale-110 z-20">
+              <svg class="w-5 h-5 text-gray-600 hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+
+            <!-- Header -->
+            <div class="text-center mb-8">
+              <div class="inline-flex items-center justify-center w-20 h-20 lg:w-24 lg:h-24 rounded-2xl mb-6 bg-gradient-to-br from-white to-pink-50 shadow-2xl mx-auto">
+                <svg class="w-10 h-10 lg:w-12 lg:h-12" fill="none" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
+                        class="fill-gradient-to-r from-[#FF1493] to-[#FF66CC]"/>
+                </svg>
+              </div>
+              
+              <h3 class="text-2xl lg:text-3xl font-black text-gray-900 font-poppins mb-4">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC]">Réservez votre Peluche</span>
+              </h3>
+              <p class="text-gray-600 font-medium font-poppins">
+                Recevez votre fiche de réservation par email pour finaliser votre commande
+              </p>
+            </div>
+
+            <!-- Form -->
+            <form @submit.prevent="submitReservation" class="space-y-6">
+              <!-- Email field -->
+              <div class="relative group">
+                <label class="block text-sm font-bold text-gray-700 mb-2 font-poppins">
+                  Votre adresse email *
+                </label>
+                <div class="relative">
+                  <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-[#FF1493]/0 via-[#FF66CC]/0 to-[#FF1493]/0 group-hover:from-[#FF1493]/10 group-hover:via-[#FF66CC]/5 group-hover:to-[#FF1493]/10 transition-all duration-500 p-[2px]">
+                    <div class="w-full h-full bg-white rounded-xl"></div>
+                  </div>
+                  <input 
+                    v-model="email"
+                    type="email"
+                    required
+                    placeholder="votre@email.com"
+                    :disabled="isSubmitting"
+                    class="relative w-full px-4 py-3 lg:py-4 bg-transparent border border-pink-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF1493]/30 focus:border-transparent transition-all duration-300 text-gray-900 font-medium font-poppins disabled:opacity-50 disabled:cursor-not-allowed"
+                  />
+                </div>
+                <p v-if="emailError" class="mt-2 text-sm text-red-500 font-poppins">{{ emailError }}</p>
+              </div>
+
+              <!-- Submit button -->
+              <button 
+                type="submit"
+                :disabled="isSubmitting"
+                class="w-full group relative py-4 px-6 bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl active:scale-95 overflow-hidden shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                <div class="absolute inset-0 bg-gradient-to-r from-[#FF1493] via-[#FF66CC] to-[#FF1493] bg-[length:200%_100%] animate-gradient-x-fast opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <!-- Loading spinner -->
+                <div v-if="isSubmitting" class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                </div>
+                
+                <span class="relative z-10 flex items-center justify-center gap-3 text-white font-black text-base font-poppins" :class="{ 'opacity-0': isSubmitting }">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                  {{ isSubmitting ? 'Envoi en cours...' : 'Recevoir ma fiche de réservation' }}
+                </span>
+              </button>
+
+              <!-- Success message -->
+              <div v-if="isSuccess" class="mt-6 p-4 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100">
+                <div class="flex items-center gap-3">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  <div>
+                    <p class="text-green-600 font-bold font-poppins">Email envoyé avec succès !</p>
+                    <p class="text-green-500 text-sm font-medium font-poppins">Vérifiez votre boîte de réception (et vos spams)</p>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <!-- Footer note -->
+            <p class="mt-6 text-xs text-gray-400 text-center font-poppins">
+              Nous ne partageons jamais votre email. Vous recevrez uniquement votre fiche de réservation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -199,6 +303,13 @@ const features = ref([
   "Livraison express offerte"
 ]);
 
+// Popup states
+const showPopup = ref(false);
+const email = ref('');
+const isSubmitting = ref(false);
+const isSuccess = ref(false);
+const emailError = ref('');
+
 let timer = null;
 
 const formatNumber = (num) => num.toString().padStart(2, '0');
@@ -215,6 +326,69 @@ const updateCountdown = () => {
   countdown.value.heures = formatNumber(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
   countdown.value.minutes = formatNumber(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)));
   countdown.value.secondes = formatNumber(Math.floor((diff % (1000 * 60)) / 1000));
+};
+
+// Popup functions
+const openReservationPopup = () => {
+  showPopup.value = true;
+  // Prevent scrolling when popup is open
+  document.body.style.overflow = 'hidden';
+};
+
+const closePopup = () => {
+  showPopup.value = false;
+  isSuccess.value = false;
+  email.value = '';
+  emailError.value = '';
+  // Re-enable scrolling
+  document.body.style.overflow = 'auto';
+};
+
+const validateEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+};
+
+const submitReservation = async () => {
+  // Reset errors
+  emailError.value = '';
+  
+  // Validate email
+  if (!validateEmail(email.value)) {
+    emailError.value = 'Veuillez entrer une adresse email valide';
+    return;
+  }
+
+  isSubmitting.value = true;
+
+  try {
+    // Ici vous intégrerez votre service d'envoi d'emails (EmailJS, SendGrid, etc.)
+    // Pour l'exemple, on simule un envoi avec un timeout
+    
+    // Simulation d'envoi d'email (à remplacer par votre API)
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // Logique d'envoi d'email à implémenter :
+    // 1. Envoyer l'email à l'utilisateur
+    // 2. Enregistrer la réservation dans votre base de données
+    // 3. Envoyer une notification à l'administrateur
+    
+    console.log('Réservation pour email:', email.value);
+    
+    // Simuler l'envoi réussi
+    isSuccess.value = true;
+    
+    // Réinitialiser le formulaire après 3 secondes
+    setTimeout(() => {
+      closePopup();
+    }, 3000);
+    
+  } catch (error) {
+    console.error('Erreur lors de la réservation:', error);
+    emailError.value = 'Une erreur est survenue. Veuillez réessayer.';
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 
 // Helper functions
@@ -238,25 +412,29 @@ const getParticleColor = (n) => {
   return colors[n % colors.length]
 }
 
-const scrollToOrder = () => {
-  const el = document.getElementById('pricing')
-  if (el) {
-    setTimeout(() => {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }, 300)
+// Close popup on escape key
+const handleEscape = (e) => {
+  if (e.key === 'Escape' && showPopup.value) {
+    closePopup();
   }
-}
+};
 
 onMounted(() => {
   updateCountdown();
   timer = setInterval(updateCountdown, 1000);
+  document.addEventListener('keydown', handleEscape);
 });
 
-onUnmounted(() => clearInterval(timer));
+onUnmounted(() => {
+  clearInterval(timer);
+  document.removeEventListener('keydown', handleEscape);
+  // Ensure body scrolling is re-enabled
+  document.body.style.overflow = 'auto';
+});
 </script>
 
 <style scoped>
-/* Animations */
+/* Les animations existantes restent inchangées */
 @keyframes orb-pulse-slow {
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(1.05); }
@@ -309,6 +487,11 @@ onUnmounted(() => clearInterval(timer));
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Apply animations */
 .animate-orb-pulse-slow {
   animation: orb-pulse-slow 6s ease-in-out infinite;
@@ -338,6 +521,10 @@ onUnmounted(() => clearInterval(timer));
 
 .animate-gift-spin {
   animation: gift-spin 5s ease-in-out infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
 
 .floating-heart {

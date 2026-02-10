@@ -55,8 +55,8 @@
             Cupidon gift
           </h2>
           <p class="text-gray-600 text-sm font-poppins max-w-md">
-            L'amour mérite sa propre icône. Des câlins éternels, des souvenirs infinis.
-          </p>
+            Une manière d'être plus proche de toi.
+        </p>
         </div>
 
         <!-- Social icons -->
@@ -90,10 +90,10 @@
       <!-- Bottom line - Copyright -->
       <div class="text-center">
         <p class="text-gray-500 text-sm font-poppins">
-          © {{ new Date().getFullYear() }} CupidonGift. Tous droits réservés.
+          © {{ new Date().getFullYear() }} Cupidon gift. Tous droits réservés.
         </p>
         <p class="text-gray-400 text-xs font-poppins mt-1">
-          Fabriqué avec ❤️ en France
+          Fabriqué avec ❤️ au Bénin. Conçu pour faire fondre les cœurs.
         </p>
       </div>
     </div>
