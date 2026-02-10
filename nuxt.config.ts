@@ -12,6 +12,9 @@ export default defineNuxtConfig({
   modules: ['@nuxt/image'],
   app: {
     head: {
+       htmlAttrs: {
+        lang: 'fr'
+      },
       title: 'Ma Peluche de Saint-Valentin',
       meta: [
         { charset: 'utf-8' },

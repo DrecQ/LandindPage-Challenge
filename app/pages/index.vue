@@ -7,8 +7,6 @@
         <PricingSection />
         <TestimonialsSection />
         <Footer />
-        
-
   </div>  
 
 </template>
