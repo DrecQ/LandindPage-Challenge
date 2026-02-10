@@ -164,9 +164,12 @@ onMounted(() => {
   background: linear-gradient(to right, #FF1493 0%, #FF66CC 25%, #FF1493 50%, #FF66CC 75%, #FF1493 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
+  background-clip: text; /* version standard */
   -webkit-text-fill-color: transparent;
+  color: transparent;    /* fallback pour Firefox */
   animation: shimmer 4s linear infinite;
 }
+
 
 @keyframes shimmer { to { background-position: 200% center; } }
 
