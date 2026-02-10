@@ -1,7 +1,7 @@
 <template>
   <section 
     id="hero" 
-    class="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden bg-white pt-16 lg:pt-20 pb-8"
+    class="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden bg-white pt-12 lg:pt-20 pb-8 lg:pb-8"
     @mousemove="handleParallax"
   >
     <!-- Background elements with faster animations -->
@@ -99,8 +99,8 @@
     <div class="container mx-auto px-6 lg:px-12 relative z-10">
       <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         
-        <!-- Badge mobile - PINK restored -->
-        <div class="lg:hidden inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#FF1493] to-[#FF66CC] text-white animate-fade-in mx-auto mb-6 shadow-lg">
+        <!-- Badge mobile - PINK restored - Marge réduite -->
+        <div class="lg:hidden inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#FF1493] to-[#FF66CC] text-white animate-fade-in mx-auto mb-4 shadow-lg">
           <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping-fast"></span>
           <span class="text-[11px] font-black uppercase tracking-widest font-poppins">Édition spéciale</span>
         </div>
@@ -114,28 +114,26 @@
 
           <div class="space-y-2">
             <h1 class="text-5xl lg:text-7xl font-black text-gray-900 leading-[1] tracking-tighter animate-fade-in-up font-poppins">
-              L'amour mérite <br/>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] animate-gradient-text">sa propre icône.</span>
-            </h1>
+              Une manière d'être<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] italic" style="font-family: 'Harrington', cursive;">
+                plus proche de toi.
+            </span>            </h1>
             <p class="text-sm lg:text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed animate-fade-in-up delay-100 font-poppins">
-              Offrez une expérience sensorielle unique avec MA PELUCHE : une douceur veloutée et un design haute couture pour une émotion éternelle.
+              Plus qu'un cadeau, un messager d'amour. MA PELUCHE transforme chaque câlin en déclaration, chaque instant en souvenir impérissable.
             </p>
           </div>
 
           <div class="pt-2 animate-fade-in-up delay-200">
             <button 
               @click="scrollToOrder"
-              class="group relative inline-flex items-center gap-6 px-8 py-5 bg-gradient-to-r from-[#FF1493] via-[#FF66CC] to-[#FF1493] text-white rounded-xl font-black text-lg lg:text-xl font-poppins shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden animate-cta-pulse"
+              class="group relative inline-flex items-center gap-6 px-8 py-5 bg-gradient-to-r from-[#FF1493] via-[#FF66CC] to-[#FF1493] text-white rounded-xl font-black text-lg lg:text-xl font-poppins shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden animate-cta-pulse whitespace-nowrap"
             >
               <!-- Animated gradient background -->
               <div class="absolute inset-0 bg-gradient-to-r from-[#FF1493] via-[#FF66CC] to-[#FF1493] bg-[length:200%_100%] animate-gradient-x-fast"></div>
               <!-- Sparkle effect -->
               <div class="absolute -top-2 -right-2 w-4 h-4 bg-white rounded-full animate-ping-fast"></div>
               <span class="relative z-10 flex items-center gap-3">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-                ADOPTER LA MIENNE
+                OFFREZ-LUI MAINTENANT
               </span>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -682,7 +680,7 @@ const scrollToOrder = () => {
     line-height: 1.1;
   }
   .container { 
-    padding-top: 1rem;
+    padding-top: 0.5rem; /* Réduit le padding top sur mobile */
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -727,6 +725,31 @@ const scrollToOrder = () => {
   .floating-heart-fast,
   .floating-rose-fast {
     opacity: 0.8;
+  }
+  
+  /* CTA optimisation pour mobile - texte sur une ligne */
+  button .relative.z-10 {
+    font-size: 0.875rem; /* Un peu plus petit sur mobile */
+    gap: 0.25rem;
+    letter-spacing: -0.5px; /* Légère réduction de l'espacement */
+  }
+  
+  button {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 0.5rem;
+  }
+  
+  /* Ajustement spécifique pour les très petits écrans */
+  @media (max-width: 375px) {
+    button .relative.z-10 {
+      font-size: 0.8125rem;
+    }
+    
+    button {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
   }
 }
 
