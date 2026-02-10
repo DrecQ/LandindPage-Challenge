@@ -1,22 +1,52 @@
 <template>
   <section id="why" class="py-24 bg-white relative overflow-hidden">
-    <!-- Background decorative elements -->
-    <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-pink-100/30 to-rose-100/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-pink-50/20 to-rose-50/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3"></div>
-    
-    <!-- Floating hearts - Utilisez des SVGs au lieu d'émojis -->
-    <svg class="absolute top-1/4 left-10 w-8 h-8 text-pink-300 animate-float-delayed" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-    </svg>
-    <svg class="absolute top-1/3 right-20 w-8 h-8 text-pink-300 animate-float" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-    </svg>
-    <svg class="absolute bottom-1/4 left-20 w-8 h-8 text-pink-300 animate-float-slow" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-    </svg>
-    <svg class="absolute bottom-1/3 right-10 w-8 h-8 text-pink-300 animate-float-delayed" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-    </svg>
+    <!-- Animated background elements (comme heroSection) -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <!-- Animated gradient orbs -->
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-[#FF1493]/10 to-[#FF66CC]/5 rounded-full blur-[120px] animate-orb-pulse-fast opacity-50"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-[#FF1493]/8 to-pink-200/20 rounded-full blur-[100px] animate-orb-drift-fast opacity-40"></div>
+      
+      <!-- Animated hearts (like heroSection) -->
+      <svg v-for="n in 10" :key="'heart-bg-' + n" 
+           :class="['absolute floating-heart-fast', `heart-bg-${n}`]"
+           :width="20 + (n % 5) * 5" :height="20 + (n % 5) * 5" 
+           viewBox="0 0 24 24" fill="none">
+        <path 
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          :class="getHeartBgColor(n)"
+        />
+      </svg>
+      
+      <!-- Enhanced rose shapes (like heroSection) -->
+      <div v-for="n in 8" :key="'rose-bg-' + n" 
+           :class="['absolute floating-rose-fast', `rose-bg-${n}`]">
+        <div class="relative w-10 h-10">
+          <div class="absolute inset-0 flex items-center justify-center animate-rose-spin-fast opacity-50">
+            <div class="w-full h-full relative">
+              <div v-for="i in 6" :key="i" 
+                   class="absolute w-4 h-5 rounded-full origin-center opacity-40"
+                   :style="{
+                     transform: `rotate(${i * 60}deg) translateY(-6px)`,
+                     backgroundColor: n % 2 === 0 ? 'rgba(255, 20, 147, 0.3)' : 'rgba(255, 102, 204, 0.2)',
+                   }"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gradient-to-r from-[#FF1493]/40 to-[#FF66CC]/40"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Particles -->
+      <div v-for="n in 15" :key="'particle-bg-' + n" 
+           :class="['absolute particle-fast', `particle-bg-${n}`]">
+        <div class="w-2 h-2 rounded-full animate-particle-twinkle-fast opacity-50" 
+             :style="{
+               backgroundColor: getParticleBgColor(n),
+               animationDelay: `${n * 0.1}s`,
+             }"></div>
+      </div>
+    </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <!-- Header Section -->
@@ -36,78 +66,130 @@
         </p>
       </div>
 
-      <!-- Features Grid -->
+      <!-- Features Grid - Style modernisé -->
       <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
         <div v-for="(item, i) in reasons" :key="i" 
-             class="group relative">
-          <!-- Card Container - Correction ici : fusionner les classes -->
-          <div :class="['reveal-item', i % 2 !== 0 ? 'lg:translate-y-6' : '']"
-               :style="{ animationDelay: `${i * 150}ms` }"
-               class="relative h-full p-10 rounded-3xl border-2 border-white bg-gradient-to-b from-white to-pink-50/30 
-                      shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2
-                      group-hover:border-pink-200/50 group-hover:bg-gradient-to-b group-hover:from-white group-hover:to-pink-50/50
-                      overflow-hidden text-center flex flex-col items-center">
+             :class="['relative group reveal-item', i % 2 !== 0 ? 'lg:translate-y-6' : '']"
+             :style="{ animationDelay: `${i * 150}ms` }">
+          
+          <!-- Modern card with glass effect -->
+          <div class="relative h-full p-8 lg:p-10 rounded-3xl backdrop-blur-sm bg-white/70 
+                      border border-white/50 shadow-2xl hover:shadow-3xl transition-all duration-500 
+                      transform hover:-translate-y-2 hover:scale-[1.02] overflow-hidden
+                      group-hover:bg-white/80 group-hover:border-pink-200/30
+                      text-center flex flex-col items-center before:absolute before:inset-0 
+                      before:bg-gradient-to-br before:from-white/50 before:to-pink-50/30 before:-z-10">
             
-            <!-- Background shine effect -->
-            <div class="absolute inset-0 bg-gradient-to-br from-transparent via-white/0 to-pink-100/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            
-            <!-- Decorative corner accent -->
-            <div class="absolute top-0 right-0 w-20 h-20 overflow-hidden">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[#FF1493]/5 to-transparent -rotate-45 transform translate-x-6 -translate-y-6"></div>
+            <!-- Animated gradient border -->
+            <div class="absolute inset-0 rounded-3xl p-[2px] bg-gradient-to-r from-transparent via-[#FF1493]/20 to-transparent 
+                        animate-gradient-border -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div class="w-full h-full bg-white rounded-3xl"></div>
             </div>
             
-            <!-- Icon Container - Centered at top -->
-            <div class="relative inline-flex items-center justify-center w-24 h-24 rounded-2xl mb-8 
-                        bg-gradient-to-br from-pink-100 to-rose-100 group-hover:from-pink-200 group-hover:to-rose-200
-                        shadow-lg group-hover:shadow-xl transition-all duration-500 border-2 border-white/50">
-              <!-- SVG Icons -->
-              <div class="text-4xl transform group-hover:scale-110 transition-transform duration-500">
-                <svg v-if="item.icon === 'softness'" class="w-12 h-12 text-[#FF1493]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <!-- Floating particles around card -->
+            <div class="absolute -inset-4 -z-20 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div v-for="j in 6" :key="j" 
+                   class="absolute w-1 h-1 rounded-full bg-[#FF1493]/40 animate-particle-float"
+                   :style="{
+                     left: `${20 + (j * 12)}%`,
+                     top: `${j % 2 === 0 ? '10%' : '90%'}`,
+                     animationDelay: `${j * 0.2}s`
+                   }"></div>
+            </div>
+            
+            <!-- Icon Container - Modern with glow -->
+            <div class="relative inline-flex items-center justify-center w-20 h-20 lg:w-24 lg:h-24 rounded-2xl mb-6 lg:mb-8 
+                        bg-gradient-to-br from-white to-pink-50 shadow-2xl 
+                        group-hover:shadow-3xl transition-all duration-500
+                        before:absolute before:-inset-2 before:rounded-3xl before:bg-gradient-to-r 
+                        before:from-[#FF1493]/20 before:via-[#FF66CC]/10 before:to-[#FF1493]/20 
+                        before:blur-md before:opacity-0 before:group-hover:opacity-100 before:transition-opacity before:duration-500
+                        after:absolute after:inset-0 after:rounded-2xl after:bg-gradient-to-br 
+                        after:from-white after:to-pink-50 after:-z-10">
+              
+              <!-- SVG Icons with gradient -->
+              <div class="relative transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                <svg v-if="item.icon === 'softness'" class="w-10 h-10 lg:w-12 lg:h-12" fill="none" viewBox="0 0 24 24">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
+                        class="fill-gradient-to-r from-[#FF1493] to-[#FF66CC]"/>
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" 
+                        fill="url(#heart-gradient)" opacity="0.5"/>
                 </svg>
-                <svg v-else-if="item.icon === 'eternity'" class="w-12 h-12 text-[#FF1493]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm6 9.09c0 4-2.55 7.7-6 8.83-3.45-1.13-6-4.82-6-8.83V6.31l6-2.12 6 2.12v4.78z"/>
+                <svg v-else-if="item.icon === 'eternity'" class="w-10 h-10 lg:w-12 lg:h-12" fill="none" viewBox="0 0 24 24">
+                  <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm6 9.09c0 4-2.55 7.7-6 8.83-3.45-1.13-6-4.82-6-8.83V6.31l6-2.12 6 2.12v4.78z" 
+                        class="fill-gradient-to-r from-[#FF1493] to-[#FF66CC]"/>
                 </svg>
-                <svg v-else-if="item.icon === 'craft'" class="w-12 h-12 text-[#FF1493]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                <svg v-else-if="item.icon === 'craft'" class="w-10 h-10 lg:w-12 lg:h-12" fill="none" viewBox="0 0 24 24">
+                  <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" 
+                        class="fill-gradient-to-r from-[#FF1493] to-[#FF66CC]"/>
+                </svg>
+                
+                <!-- Gradient definition for SVG -->
+                <svg class="absolute w-0 h-0">
+                  <defs>
+                    <linearGradient id="heart-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FF1493" stop-opacity="1" />
+                      <stop offset="100%" stop-color="#FF66CC" stop-opacity="1" />
+                    </linearGradient>
+                  </defs>
                 </svg>
               </div>
               
-              <!-- Floating particles around icon -->
-              <div class="absolute inset-0 overflow-hidden">
-                <div class="absolute -top-2 -left-2 w-4 h-4 bg-[#FF1493]/20 rounded-full animate-float-icon"></div>
-                <div class="absolute -top-2 -right-2 w-3 h-3 bg-[#FF1493]/20 rounded-full animate-float-icon" style="animation-delay: 0.5s"></div>
-                <div class="absolute -bottom-2 -left-2 w-3 h-3 bg-[#FF1493]/20 rounded-full animate-float-icon" style="animation-delay: 1s"></div>
-                <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-[#FF1493]/20 rounded-full animate-float-icon" style="animation-delay: 1.5s"></div>
+              <!-- Animated sparkles -->
+              <div class="absolute -top-1 -right-1 w-3 h-3">
+                <div class="w-full h-full bg-gradient-to-r from-[#FF1493] to-[#FF66CC] rounded-full animate-ping-fast opacity-70"></div>
               </div>
             </div>
 
             <!-- Content -->
             <div class="flex-grow flex flex-col justify-center">
-              <h3 class="text-2xl font-black font-poppins mb-4 text-gray-800 group-hover:text-[#FF1493] transition-colors duration-300">
+              <h3 class="text-xl lg:text-2xl font-black font-poppins mb-4 text-gray-800 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#FF1493] group-hover:to-[#FF66CC] transition-all duration-300">
                 {{ item.title }}
               </h3>
               
-              <p class="text-gray-600 leading-relaxed font-medium font-poppins text-base">
+              <p class="text-gray-600 leading-relaxed font-medium font-poppins text-sm lg:text-base">
                 {{ item.desc }}
               </p>
             </div>
 
-            <!-- Hover effect line -->
-            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-[#FF1493] to-[#FF66CC] rounded-full group-hover:w-3/4 transition-all duration-500"></div>
+            <!-- Animated underline on hover -->
+            <div class="relative mt-6 pt-4 w-full">
+              <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF1493] to-transparent rounded-full group-hover:w-3/4 transition-all duration-500 group-hover:delay-300"></div>
+              <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF66CC] to-transparent rounded-full group-hover:w-1/2 transition-all duration-500 group-hover:delay-500 blur-sm"></div>
+            </div>
           </div>
 
-          <!-- External glow effect -->
-          <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#FF1493]/0 via-[#FF1493]/5 to-[#FF1493]/0 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+          <!-- Background glow effect -->
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#FF1493]/0 via-[#FF1493]/10 to-[#FF66CC]/0 blur-xl opacity-0 group-hover:opacity-30 transition-all duration-700 -z-30 transform group-hover:scale-105"></div>
         </div>
       </div>
 
-      <!-- Stats Section -->
-      <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 reveal-section">
+      <!-- Stats Section - Modernisé -->
+      <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 reveal-section">
         <div v-for="stat in stats" :key="stat.label"
-             class="text-center p-6 rounded-2xl bg-gradient-to-b from-white to-pink-50/30 border border-pink-100/50 hover:border-pink-200/70 transition-all duration-300">
-          <div class="text-3xl font-black text-[#FF1493] font-poppins mb-2">{{ stat.value }}</div>
-          <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider font-poppins">{{ stat.label }}</div>
+             class="group relative text-center p-4 lg:p-6 rounded-2xl backdrop-blur-sm bg-white/50 
+                    border border-white/30 hover:border-[#FF1493]/30 transition-all duration-300
+                    hover:shadow-xl hover:-translate-y-1 overflow-hidden">
+          
+          <!-- Animated background on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#FF1493]/0 via-[#FF66CC]/0 to-pink-100/0 
+                      group-hover:from-[#FF1493]/5 group-hover:via-[#FF66CC]/3 group-hover:to-pink-100/10 
+                      transition-all duration-500"></div>
+          
+          <div class="relative">
+            <div class="text-2xl lg:text-3xl font-black text-[#FF1493] font-poppins mb-1 lg:mb-2 
+                       group-hover:scale-110 transition-transform duration-300">
+              {{ stat.value }}
+            </div>
+            <div class="text-xs lg:text-sm font-semibold text-gray-600 uppercase tracking-wider font-poppins">
+              {{ stat.label }}
+            </div>
+          </div>
+          
+          <!-- Corner accent -->
+          <div class="absolute top-0 right-0 w-6 h-6 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-[#FF1493]/10 to-transparent -rotate-45 transform translate-x-2 -translate-y-2"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -141,61 +223,47 @@ const stats = ref([
   { value: '5★', label: 'Satisfaction Client' },
   { value: '+10k', label: 'Peluchés Heureux' }
 ])
+
+// Helper functions for background elements
+const getHeartBgColor = (n) => {
+  const colors = [
+    'fill-[#FF1493]/30',
+    'fill-[#FF66CC]/25',
+    'fill-[#FF1493]/20',
+    'fill-[#FF66CC]/15'
+  ]
+  return colors[n % colors.length]
+}
+
+const getParticleBgColor = (n) => {
+  const colors = [
+    'rgba(255, 20, 147, 0.4)',
+    'rgba(255, 102, 204, 0.3)',
+    'rgba(255, 182, 193, 0.3)',
+    'rgba(255, 105, 180, 0.3)'
+  ]
+  return colors[n % colors.length]
+}
 </script>
 
 <style scoped>
-/* Floating animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-  50% { transform: translateY(-20px) rotate(5deg); opacity: 1; }
+/* Animations from heroSection */
+@keyframes gradient-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-  50% { transform: translateY(-15px) rotate(-3deg); opacity: 1; }
-}
-
-@keyframes float-delayed {
-  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-  50% { transform: translateY(-25px) rotate(2deg); opacity: 1; }
-}
-
-@keyframes float-icon {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-  50% { transform: translate(5px, -5px) scale(1.2); opacity: 0.8; }
-}
-
-/* Animations optimisées - version simplifiée sans infinite */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-  font-size: 2rem;
-}
-
-.animate-float-slow {
-  animation: float-slow 8s ease-in-out infinite;
-  font-size: 2rem;
-}
-
-.animate-float-delayed {
-  animation: float-delayed 7s ease-in-out infinite;
-  font-size: 2rem;
-}
-
-.animate-float-icon {
-  animation: float-icon 2s ease-in-out infinite;
-}
-
-/* Simple reveal animations avec performance optimisée */
-.reveal-section {
-  animation: fadeInUp 0.8s ease-out forwards;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.reveal-item {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
-  transform: translateY(30px);
+@keyframes particle-float {
+  0%, 100% { 
+    transform: translateY(0) translateX(0); 
+    opacity: 0; 
+  }
+  10%, 90% { opacity: 0.5; }
+  50% { 
+    transform: translateY(-20px) translateX(10px); 
+    opacity: 1; 
+  }
 }
 
 @keyframes fadeInUp {
@@ -205,23 +273,135 @@ const stats = ref([
   }
 }
 
-/* Optimisations pour les mobiles */
+/* Apply animations */
+.animate-gradient-border {
+  background-size: 200% 200%;
+  animation: gradient-border 3s ease infinite;
+}
+
+.animate-particle-float {
+  animation: particle-float 3s ease-in-out infinite;
+}
+
+.reveal-section,
+.reveal-item {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Mobile optimizations */
 @media (max-width: 768px) {
-  .animate-float,
-  .animate-float-slow,
-  .animate-float-delayed {
+  /* Hide some background animations on mobile */
+  .floating-heart-fast:nth-child(n+6),
+  .floating-rose-fast:nth-child(n+5),
+  .particle-fast:nth-child(n+8) {
     display: none;
+  }
+  
+  /* Reduce padding on mobile */
+  .p-8 {
+    padding: 1.5rem;
+  }
+  
+  .p-10 {
+    padding: 2rem;
+  }
+  
+  /* Adjust text sizes */
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  
+  .text-base {
+    font-size: 0.875rem;
+  }
+  
+  /* Adjust icon size */
+  .w-20 {
+    width: 4rem;
+    height: 4rem;
   }
 }
 
-/* Option : Si vous avez toujours des problèmes de performance, 
-   utilisez cette version simplifiée des animations flottantes */
-@media (max-width: 1024px) {
-  .animate-float,
-  .animate-float-slow,
-  .animate-float-delayed {
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
+/* SVG gradient fill */
+.fill-gradient-to-r {
+  fill: url(#heart-gradient);
+}
+
+/* Custom properties for animations */
+.floating-heart-fast,
+.floating-rose-fast,
+.particle-fast {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Position background elements */
+.heart-bg-1 { top: 10%; left: 5%; animation-duration: 15s; animation-delay: 0s; }
+.heart-bg-2 { top: 20%; right: 10%; animation-duration: 18s; animation-delay: 2s; }
+.heart-bg-3 { bottom: 15%; left: 15%; animation-duration: 20s; animation-delay: 4s; }
+.heart-bg-4 { bottom: 25%; right: 5%; animation-duration: 16s; animation-delay: 1s; }
+
+.rose-bg-1 { top: 15%; right: 15%; animation-duration: 25s; animation-delay: 1s; }
+.rose-bg-2 { bottom: 20%; left: 10%; animation-duration: 30s; animation-delay: 3s; }
+
+/* Import animations from heroSection (simplified versions) */
+@keyframes orb-pulse-fast {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+@keyframes orb-drift-fast {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, 20px); }
+}
+
+@keyframes rose-spin-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes particle-twinkle-fast {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+@keyframes ping-fast {
+  75%, 100% { transform: scale(1.5); opacity: 0; }
+}
+
+.animate-orb-pulse-fast { animation: orb-pulse-fast 8s ease-in-out infinite; }
+.animate-orb-drift-fast { animation: orb-drift-fast 20s ease-in-out infinite; }
+.animate-rose-spin-fast { animation: rose-spin-fast 25s linear infinite; }
+.animate-particle-twinkle-fast { animation: particle-twinkle-fast 2s ease-in-out infinite; }
+.animate-ping-fast { animation: ping-fast 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+/* Floating animations for background elements */
+@keyframes heart-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(-30px) rotate(10deg); opacity: 0.8; }
+}
+
+@keyframes rose-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateY(-25px) rotate(-5deg); opacity: 0.6; }
+}
+
+@keyframes particle-drift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+  50% { transform: translate(15px, -15px); opacity: 0.7; }
+}
+
+.floating-heart-fast {
+  animation: heart-float 12s ease-in-out infinite;
+}
+
+.floating-rose-fast {
+  animation: rose-float 15s ease-in-out infinite;
+}
+
+.particle-fast {
+  animation: particle-drift 10s ease-in-out infinite;
 }
 </style>

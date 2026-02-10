@@ -82,10 +82,10 @@
         <div class="w-1 h-1 rounded-full bg-gradient-to-r from-[#FF1493] to-[#FF66CC] animate-dot-trail-fast"></div>
       </div>
 
-      <!-- Background marquee text - CORRIGÉ : emojis dans une span -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400%] lg:w-[200%] opacity-[0.05] lg:opacity-[0.03] -rotate-12 lg:-rotate-6 select-none pointer-events-none">
-        <div class="marquee-text font-black text-[12vh] lg:text-[20vh] whitespace-nowrap uppercase tracking-tighter text-gray-900">
-          <span class="inline-block">❤️</span> VALENPELUCHE <span class="inline-block">❤️</span> PURE DOUCEUR <span class="inline-block">❤️</span> VALENPELUCHE <span class="inline-block">❤️</span> PURE DOUCEUR <span class="inline-block">❤️</span>
+       <!-- Background marquee text - POSITION AUGMENTÉE sur mobile -->
+      <div class="absolute top-[35%] lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400%] lg:w-[200%] opacity-[0.08] lg:opacity-[0.03] -rotate-30 lg:-rotate-6 select-none pointer-events-none">
+        <div class="marquee-text font-black text-[14vh] lg:text-[20vh] whitespace-nowrap uppercase tracking-tighter text-gray-900">
+          <span class="inline-block">❤️</span> MA PELUCHE <span class="inline-block">❤️</span> PURE DOUCEUR <span class="inline-block">❤️</span> MA PELUCHE <span class="inline-block">❤️</span> PURE DOUCEUR <span class="inline-block">❤️</span>
         </div>
       </div>
       
@@ -118,7 +118,7 @@
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] animate-gradient-text">sa propre icône.</span>
             </h1>
             <p class="text-sm lg:text-lg text-gray-600 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed animate-fade-in-up delay-100 font-poppins">
-              Offrez une expérience sensorielle unique avec ValenPeluche : une douceur veloutée et un design haute couture pour une émotion éternelle.
+              Offrez une expérience sensorielle unique avec MA PELUCHE : une douceur veloutée et un design haute couture pour une émotion éternelle.
             </p>
           </div>
 
@@ -172,7 +172,7 @@
             >
               <img 
                 src="/images/image.webp" 
-                alt="ValenPeluche" 
+                alt="MA PELUCHE" 
                 class="w-full h-auto drop-shadow-[0_40px_60px_rgba(0,0,0,0.2)] animate-float-3d-fast"
               />
             </div>

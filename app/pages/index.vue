@@ -6,6 +6,7 @@
         <ProductSection />
         <PricingSection />
         <TestimonialsSection />
+        <Footer />
         
 
   </div>  
@@ -13,6 +14,7 @@
 </template>
 
 <script lang="ts" setup>
+import Footer from '~/components/Footer.vue';
 import Navbar from '~/components/Navbar.vue'
 import HeroSection from '~/components/sections/HeroSection.vue'
 import PricingSection from '~/components/sections/PricingSection.vue';

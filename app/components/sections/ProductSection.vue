@@ -1,12 +1,30 @@
 <template>
   <section id="product" class="relative py-16 overflow-hidden bg-white">
+    <!-- Background decorative elements with hearts like other sections -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <!-- Animated hearts in background -->
+      <svg v-for="n in 8" :key="'heart-bg-' + n" 
+           :class="['absolute floating-heart-fast', `heart-bg-${n}`]"
+           :width="25 + (n % 4) * 5" :height="25 + (n % 4) * 5" 
+           viewBox="0 0 24 24" fill="none">
+        <path 
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          :class="getHeartBgColor(n)"
+        />
+      </svg>
+      
+      <!-- Additional decorative orbs -->
+      <div class="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-gradient-to-br from-[#FF1493]/5 to-[#FF66CC]/3 rounded-full blur-[80px] opacity-30"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-gradient-to-tr from-[#FF1493]/4 to-pink-200/10 rounded-full blur-[60px] opacity-25"></div>
+    </div>
+
     <div class="absolute inset-0 bg-gradient-to-b from-pink-50/10 to-white/50"></div>
 
     <div class="container mx-auto px-4 relative z-10">
       <!-- Simple headline -->
       <div class="text-center mb-20 reveal-section">
         <h2 class="text-4xl lg:text-6xl font-black text-gray-900 font-poppins mb-6 leading-tight">
-            Pour s'offrir des
+            Pour lui offrir des
           <span class="relative inline-block">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] italic" style="font-family: 'Harrington', cursive;">
                 câlins éternels.
@@ -104,7 +122,7 @@
                    class="bg-white rounded-2xl shadow-2xl p-8 h-full border border-pink-100 transform transition-all duration-500 animate-card-appear">
                 <!-- Close button -->
                 <button 
-                  @click="activePoint = null"
+                  @click="closeModal"
                   class="absolute top-4 right-4 w-8 h-8 rounded-full bg-pink-100 hover:bg-pink-200 flex items-center justify-center transition-colors"
                 >
                   <span class="text-gray-600 text-sm">×</span>
@@ -188,7 +206,7 @@
     <Transition name="modal">
       <div v-if="isMobile && activePoint !== null" 
            class="fixed inset-0 z-50 flex items-end lg:items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
-           @click.self="activePoint = null">
+           @click.self="closeModal">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[80vh] overflow-hidden transform transition-all duration-300">
           <!-- Modal header -->
           <div class="sticky top-0 bg-white border-b border-pink-100 p-4 flex items-center justify-between">
@@ -208,7 +226,7 @@
               </div>
             </div>
             <button 
-              @click="activePoint = null"
+              @click="closeModal"
               class="w-8 h-8 rounded-full bg-pink-100 hover:bg-pink-200 flex items-center justify-center transition-colors"
             >
               <span class="text-gray-600 text-lg">×</span>
@@ -282,13 +300,24 @@ const hoverPoint = ref(null)
 const isMobile = ref(false)
 
 const handlePointClick = (index) => {
-  activePoint.value = activePoint.value === index ? null : index
-  if (isMobile.value && activePoint.value !== null) {
-    // Prevent body scroll when modal is open on mobile
-    document.body.style.overflow = 'hidden'
+  // Si on clique sur le même point, on ferme
+  if (activePoint.value === index) {
+    activePoint.value = null
+    if (isMobile.value) {
+      document.body.style.overflow = ''
+    }
   } else {
-    document.body.style.overflow = ''
+    // Sinon, on ouvre le nouveau point
+    activePoint.value = index
+    if (isMobile.value) {
+      document.body.style.overflow = 'hidden'
+    }
   }
+}
+
+const closeModal = () => {
+  activePoint.value = null
+  document.body.style.overflow = ''
 }
 
 const interactivePoints = [
@@ -337,18 +366,36 @@ const advantages = [
   { label: 'Retour gratuit' }
 ]
 
+// Helper function for heart colors
+const getHeartBgColor = (n) => {
+  const colors = [
+    'fill-[#FF1493]/30',
+    'fill-[#FF66CC]/25',
+    'fill-[#FF1493]/20',
+    'fill-[#FF66CC]/15',
+    'fill-[#FF1493]/25'
+  ]
+  return colors[n % colors.length]
+}
+
 const scrollToOrder = () => {
   activePoint.value = null
   document.body.style.overflow = ''
   const el = document.getElementById('pricing')
-  setTimeout(() => {
-    el?.scrollIntoView({ behavior: 'smooth' })
-  }, 300)
+  if (el) {
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }, 300)
+  }
 }
 
 // Check if mobile
 const checkMobile = () => {
   isMobile.value = window.innerWidth < 1024
+  // Si on passe en desktop pendant qu'un point est actif, restaurer le scroll
+  if (!isMobile.value && document.body.style.overflow === 'hidden') {
+    document.body.style.overflow = ''
+  }
 }
 
 onMounted(() => {
@@ -358,6 +405,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('resize', checkMobile)
+  // Toujours restaurer le scroll quand le composant est détruit
   document.body.style.overflow = ''
 })
 </script>
@@ -436,6 +484,45 @@ onUnmounted(() => {
 /* Hover effects for interactive points */
 button:hover {
   transform: scale(1.1);
+}
+
+/* Floating animations for background hearts */
+@keyframes heart-float-fast {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(-30px) rotate(10deg); opacity: 0.7; }
+}
+
+.floating-heart-fast {
+  animation: heart-float-fast 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Position background hearts */
+.heart-bg-1 { top: 10%; left: 5%; animation-duration: 18s; animation-delay: 0s; }
+.heart-bg-2 { top: 20%; right: 10%; animation-duration: 20s; animation-delay: 2s; }
+.heart-bg-3 { bottom: 15%; left: 15%; animation-duration: 22s; animation-delay: 4s; }
+.heart-bg-4 { bottom: 25%; right: 5%; animation-duration: 19s; animation-delay: 1s; }
+.heart-bg-5 { top: 35%; left: 30%; animation-duration: 21s; animation-delay: 3s; }
+.heart-bg-6 { top: 45%; right: 25%; animation-duration: 23s; animation-delay: 5s; }
+
+/* Mobile optimizations for background elements */
+@media (max-width: 768px) {
+  /* Keep hearts visible on mobile but reduce number */
+  .floating-heart-fast:nth-child(n+5) {
+    display: none;
+  }
+  
+  /* Adjust heart positions for mobile */
+  .heart-bg-1 { top: 5%; left: 2%; }
+  .heart-bg-2 { top: 15%; right: 5%; }
+  .heart-bg-3 { bottom: 10%; left: 5%; }
+  .heart-bg-4 { bottom: 20%; right: 2%; }
+  
+  /* Adjust opacity for better visibility on mobile */
+  .floating-heart-fast {
+    opacity: 0.5;
+  }
 }
 
 /* Responsive adjustments */

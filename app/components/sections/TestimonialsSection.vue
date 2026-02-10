@@ -2,20 +2,22 @@
   <section id="testimonials" class="py-20 md:py-24 bg-gradient-to-b from-white to-pink-50/30">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
-      <div class="text-center mb-16" v-reveal>
-        <h2 class="text-3xl md:text-4xl font-black text-gray-900 font-poppins mb-4">
-          Ils ont déjà
+      <div class="text-center mb-20 reveal-section">
+        <h2 class="text-4xl lg:text-6xl font-black text-gray-900 font-poppins mb-6 leading-tight">
+            Ils ont essayés et
           <span class="relative inline-block">
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF1493] to-[#FF66CC] italic" style="font-family: 'Harrington', cursive;">
-              succombé.
+            ont tous succombé.
             </span>
-            <span class="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-[#FF1493] to-[#FF66CC] rounded-full"></span>
+            <span class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#FF1493] to-[#FF66CC] rounded-full"></span>
           </span>
         </h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto font-medium">
-          Découvrez ce que pensent ceux qui ont déjà offert la ValenPeluche
+        
+        <p class="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto font-medium font-poppins leading-relaxed">
+            Découvrez les témoignages de nos clients conquis par la pelluche, le cadeau qui relie des âmes. 
         </p>
       </div>
+
 
       <!-- Testimonials Grid -->
       <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -123,7 +125,7 @@ const testimonials = ref([
     initials: 'TM',
     name: 'Thomas M.',
     date: '14 Fév 2024',
-    product: 'ValenPeluche Rose',
+    product: 'MA PELUCHE',
     text: 'Ma compagne a été bluffée par la qualité. On sent vraiment que ce n\'est pas une peluche ordinaire. Le coffret est sublime et le message personnalisé a fait son effet !',
     rating: 5
   },
@@ -131,7 +133,7 @@ const testimonials = ref([
     initials: 'SL',
     name: 'Sophie L.',
     date: '10 Fév 2024',
-    product: 'ValenPeluche Cœur',
+    product: 'MA PELUCHE',
     text: 'J\'ai offert cette peluche à mon ami pour notre premier anniversaire. Il a adoré ! La douceur est incroyable et le petit nœud en satin ajoute une touche d\'élégance.',
     rating: 5
   },
@@ -139,7 +141,7 @@ const testimonials = ref([
     initials: 'AP',
     name: 'Alexandre P.',
     date: '8 Fév 2024',
-    product: 'ValenPeluche Classique',
+    product: 'MA PELUCHE',
     text: 'Livraison ultra rapide, emballage soigné. Ma petite amie ne la quitte plus depuis qu\'elle l\'a reçue. Un cadeau qui fait vraiment plaisir, bien mieux que des fleurs !',
     rating: 5
   }

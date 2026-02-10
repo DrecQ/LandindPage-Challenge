@@ -41,13 +41,13 @@
        @mousedown="startDrag">
     
     <button @click="toggleMenu" 
-            class="w-16 h-16 rounded-full bg-gradient-to-br from-[#FF0099] to-[#ff66cc] flex items-center justify-center shadow-2xl shadow-pink-500/40 z-[100] relative active:scale-90 transition-transform duration-200">
+            class="w-16 h-16 rounded-full bg-gradient-to-br from-[#FF1493] to-[#FF66CC] flex items-center justify-center shadow-2xl shadow-pink-500/40 z-[100] relative active:scale-90 transition-transform duration-200">
       <div class="w-6 flex flex-col items-center gap-1.5 pointer-events-none">
         <span class="block h-0.5 bg-white rounded-full transition-all duration-300" :class="isOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'"></span>
         <span class="block w-6 h-0.5 bg-white rounded-full transition-all duration-300" :class="isOpen ? 'opacity-0' : 'opacity-100'"></span>
         <span class="block h-0.5 bg-white rounded-full transition-all duration-300" :class="isOpen ? 'w-6 -rotate-45 -translate-y-2' : 'w-6'"></span>
       </div>
-      <div v-if="!isOpen && !isDragging" class="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full border-2 border-[#FF0099] animate-pulse"></div>
+      <div v-if="!isOpen && !isDragging" class="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full border-2 border-[#FF1493] animate-pulse"></div>
     </button>
 
     <Transition 
@@ -86,9 +86,9 @@ const dragStart = ref({ x: 0, y: 0 })
 const menuPosition = ref({ x: 0, y: 0 })
 
 const navLinks = [
-  { id: 'product', href: '#product', label: 'La Peluche' },
-  { id: 'why', href: '#why', label: 'L\'expérience' },
-  { id: 'benefits', href: '#benefits', label: 'Les atouts' },
+  { id: 'product', href: '#product', label: 'Ma Peluche' },
+  { id: 'why', href: '#why', label: 'Me choisir' },
+  { id: 'benefits', href: '#product', label: 'Mes atouts' },
   { id: 'testimonials', href: '#testimonials', label: 'Avis clients' }
 ]
 
@@ -161,7 +161,7 @@ onMounted(() => {
 
 <style scoped>
 .valentines-title {
-  background: linear-gradient(to right, #FF0099 0%, #ff66cc 25%, #FF0099 50%, #ff66cc 75%, #FF0099 100%);
+  background: linear-gradient(to right, #FF1493 0%, #FF66CC 25%, #FF1493 50%, #FF66CC 75%, #FF1493 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -170,9 +170,20 @@ onMounted(() => {
 
 @keyframes shimmer { to { background-position: 200% center; } }
 
+/* CHANGEMENT ICI : Rose plus foncé (#FF1493) pour desktop */
 .brush-stroke::before {
   content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) skewX(-10deg);
-  width: 90%; height: 70%; background: #FF0099; opacity: 0.12; border-radius: 4px 15px 5px 12px; transition: all 0.3s ease;
+  width: 90%; height: 70%; background: #FF1493; opacity: 0.12; border-radius: 4px 15px 5px 12px; transition: all 0.3s ease;
+}
+
+/* CHANGEMENT ICI : Effet hover avec rose plus foncé pour desktop */
+.brush-stroke:hover::before {
+  background: #FF1493; opacity: 1; width: 100%; height: 100%; border-radius: 10px;
+}
+
+/* CHANGEMENT ICI : Pour le menu mobile */
+.brush-stroke.group-active::before {
+  background: #FF1493; opacity: 1; width: 100%; height: 100%; border-radius: 10px;
 }
 
 .fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }
